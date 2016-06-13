@@ -19,8 +19,9 @@ from asset import views
 
 
 
-urlpatterns = [
+urlpatterns = [            
    url(r'^userlist/$', views.user_list),
    url(r'^userdetail/(?P<pk>[0-9]+)/$', views.user_detail),
    url(r'^admin/', admin.site.urls),
+   url(r'^index/', include('asset.urls')),
 ]
