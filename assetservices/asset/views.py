@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from django.http import HttpResponse
 from django.template import loader
 
+
 def index(request):
     template = loader.get_template('public/index.html')
     return HttpResponse(template.render(request))
