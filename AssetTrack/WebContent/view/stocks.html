@@ -1,3 +1,194 @@
-
-<p>rem Ipsum is simply dummy text of the printing and <br> 
-typesetting industry. Lorem Ipsum has been the industry's <br>standard dum<br>my text ever since <br>the 1500s, when an unk<br>nown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop</p>
+<div class="container" ng-controller="stocksCtrl">
+  <h3>Stocks</h3>
+	<div class="btn-group">
+  		<button type="button" ng-click="btnSearch()" class="btn btn-primary">Search</button>
+  		<button type="button" ng-click="btnAdd()" class="btn btn-primary">Add</button>
+  
+	</div>
+	
+	
+	
+	<div class="searchStocks" ng-show="searchStockShow">
+	<p>Search</p>
+		<table>
+			<tr>
+				<th>Type</th>
+				<th>Name</th>
+				<th>Serial_Number</th>
+				<th>Date_OF_Purchase</th>
+				<th>Expiry_Date</th>
+				<th>Price</th>
+				
+			
+			</tr>
+		  <tr ng-repeat="x in stocks">
+		  	
+		    <td>{{ x.type }}</td>
+		    <td>{{ x.name }}</td>
+		    <td>{{ x.serial_no }}</td>
+		    <td>{{ x.dop }}</td>
+		    <td>{{ x.exp_date }}</td>
+		    <td>{{ x.price }}</td>
+		    <td>
+		    <button type="button" ng-click="DeleteStock(x)" class="btn btn-default"><span class="	glyphicon glyphicon-trash"></span></button>
+            <button type="button" ng-click="EditStock(x)" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>
+		    
+		   
+		    </td>
+		  </tr>
+		</table>
+	
+	</div>
+	
+	
+	
+  	<div class="addStock" ng-show="addStockShow">
+  	
+  		<p>Add</p>
+  		<form class="form-horizontal" role="form" ng-submit="AddNewStock()">
+  		
+  		 <div class="form-group">
+		    <label class="control-label col-sm-2" for="pwd">stock Type:</label>
+		    <select ng-model="newstock.type">
+			    <option value="">
+			    <option value="software">Software
+			    <option value="hardware">Hardware
+			    
+			</select>
+		  </div>
+  		
+  		
+  		
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="name"> Name:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="newstock.name">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="serial_no">Serial_no:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="serial_no" placeholder="Enter serial_no" ng-model="newstock.serial_no">
+		    </div>
+		  </div>
+		  
+		 
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="dop">Date_Of_Purchase:</label>
+		    <div class="col-sm-10">
+		      <input type="date" class="form-control" id="dop" placeholder="Enter date of purchase" ng-model="dop">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="exp_date">Expiry_Date:</label>
+		    <div class="col-sm-10"> 
+		      <input type="date" class="form-control" id="exp_date" placeholder="Enter expiry date" ng-model="exp_date">
+		    </div>
+		  </div>
+		  
+		  
+		 
+		    <div class="form-group">
+		    <label class="control-label col-sm-2" for="price">Price:</label>
+		    <div class="col-sm-10"> 
+		      <input type="text" class="form-control" id="price" placeholder="Enter price" ng-model="newstock.price">
+		    </div>
+		  </div>
+		  
+		  
+		    <div class="form-group"> 
+		    <div class="col-sm-offset-1 col-sm-5">
+		      <button type="reset" class="btn btn-default">Reset</button>
+		    </div>
+		  </div>
+		 
+		  
+		  <div class="form-group"> 
+		    <div class="col-sm-offset-1 col-sm-5">
+		      <button type="submit" class="btn btn-default" >Submit</button>
+		    </div>
+		  </div>
+		</form>
+		
+	</div>	
+  		<div class="updateStock" ng-show="updateStockShow">
+  	
+  		<p>Add</p>
+  		<form class="form-horizontal" role="form" ng-submit="UpdateStock()">
+  		
+  		
+  		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="pwd"> Type:</label>
+		    <select ng-model="updatestock.utype">
+			    <option value="">
+			    <option value="software">software
+			    <option value="hardware">hardware
+			    
+			</select>
+		  </div>
+		  
+  		
+  		
+  		
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="name">Name:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control"  placeholder="Enter firstname" ng-model="updatestock.name">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="serial_no">Serial_Number:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control"  placeholder="Enter lastname" ng-model="updatestock.serial_no">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="dop">Date_Of_Purchase:</label>
+		    <div class="col-sm-10">
+		      <input type="date" class="form-control"  placeholder="Enter dop" ng-model="dop">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="exp_date">Expiry_Date:</label>
+		    <div class="col-sm-10">
+		      <input type="date" class="form-control"  placeholder="Enter expiry date"  ng-model="exp_date">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="price">Price:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control"  placeholder="Enter price" ng-model="updatestock.price">
+		    </div>
+		  </div>
+		  
+		 
+		  
+		  
+		
+		  
+		    <div class="form-group"> 
+		    <div class="col-sm-offset-1 col-sm-5">
+		      <button type="reset" class="btn btn-default">Reset</button>
+		    </div>
+		  </div>
+		 
+		  
+		  <div class="form-group"> 
+		    <div class="col-sm-offset-1 col-sm-5">
+		      <button type="submit" class="btn btn-default" >Update</button>
+		    </div>
+		  </div>
+		</form>
+  	</div>
+  	
+  	
+  	
+ </div>

@@ -23,5 +23,12 @@ urlpatterns = [
    url(r'^userlist/$', views.user_list),
    url(r'^userdetail/(?P<pk>[0-9]+)/$', views.user_detail),
    url(r'^admin/', admin.site.urls),
+   url(r'^stocklist/$', views.stock_list),
+   url(r'^stockdetail/(?P<pk>[0-9]+)/$', views.stock_detail),
+   url(r'^assignmentlist/$', views.assignment_list),
+   url(r'^assignmentdetail/(?P<pk>[0-9]+)/$',views.assignment_detail )
    
 ]
+
+
+
